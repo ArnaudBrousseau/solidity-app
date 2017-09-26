@@ -35,3 +35,9 @@ If you want to run the web app:
 * The migration step does not automatically scan your contracts to deploy them all! You'll need to add a line to `migrations/2_deploy_contracts.js` to deploy a newly created contract
 * In the console, do NOT do `Geekt = Geekt.deployed()` (or whatever your app is called). Otherwise you lose the original reference to your deployed app!
 * The last part of the tutorial is very rough and confusing. I ended up building my own old-school, non-react frontend which just displays the list of users of Solcial. Nothing fancy but it's better than blindly copying the over-complicated code at https://github.com/Tectract/ethereum-demo-tools/tree/master/GeektReactApp/src IMO
+
+# TODO
+[x] Follow tutorial, get the app running on dev
+[x] Build UI to access data with web3 in a browser
+[ ] Write tests for `Solcial.sol`
+[ ] Cleanup the project and the extra contracts
