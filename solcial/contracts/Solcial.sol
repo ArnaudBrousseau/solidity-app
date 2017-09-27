@@ -83,6 +83,10 @@ contract Solcial {
 
   function getUsers() constant returns (address[]) { return usersByAddress; }
 
+  function getNumberOfUsers() constant returns (uint) {
+      return usersByAddress.length;
+  }
+
   function getUser(address userAddress) constant returns (string,bytes32,bytes32,bytes32,bytes32[]) {
     return (Users[userAddress].handle,Users[userAddress].city,Users[userAddress].state,Users[userAddress].country,Users[userAddress].myImages);
   }
