@@ -2,24 +2,26 @@
 A set of distributed apps written in Solidity.
 Inspired from the tutorial at https://blockgeeks.com/guides/how-to-learn-solidity/
 
-# Node dependencies
-I usually install node modules locally to avoid version conflicts. To run modules as if they were global:
+# NodeJS dependencies
+I'm using Node 8.6.0. It's available for download at https://nodejs.org/dist/v8.6.0/
+
+# Node modules
+I usually install node modules locally to avoid version conflicts. To run
+modules as if they were global:
 
     export PATH=$PWD/node_modules/.bin:$PATH
-
-The tests I wrote use async/await, so you'll need the latest node (> 8).
 
 # Installing
 The command below assumes you have node/npm installed somewhere on your `$PATH`:
 
-    npm install truffle
-    npm install ethereumjs-testrpc
+    cd solcial
+    npm install .
 
 # Running
 
 Start the test network:
 
-    testrpc -p 8123
+    testrpc -p 8123 (this port is referenced in truffle.js)
 
 Then:
 
@@ -28,7 +30,7 @@ Then:
 
 If you want to run the web app:
 
-    cd app && python -m SimpleHTTPServer <PORT>
+    http-server app -p 8888
 
 # Testing
 
@@ -73,4 +75,4 @@ Simply run:
 - [x] Write Solidity tests for `Solcial.sol`
 - [x] Write JS tests for `Solcial.sol`
 - [ ] Write more complete JS tests for `Solcial.sol`
-- [ ] Cleanup the project and the extra contracts
+- [x] Cleanup the project and the extra contracts

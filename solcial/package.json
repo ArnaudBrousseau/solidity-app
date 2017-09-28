@@ -1,0 +1,23 @@
+{
+  "name": "solcial",
+  "version": "1.0.0",
+  "description": "A social network built with Solidity",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnaudBrousseau/solidity-app.git"
+  },
+  "author": "Arnaud Brousseau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArnaudBrousseau/solidity-app/issues"
+  },
+  "homepage": "https://github.com/ArnaudBrousseau/solidity-app#readme",
+  "dependencies": {
+    "ethereumjs-testrpc": "4.1.3",
+    "http-server": "0.10.0",
+    "truffle": "3.4.9"
+  }
+}
