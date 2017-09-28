@@ -7,6 +7,8 @@ I usually install node modules locally to avoid version conflicts. To run module
 
     export PATH=$PWD/node_modules/.bin:$PATH
 
+The tests I wrote use async/await, so you'll need the latest node (> 8).
+
 # Installing
 The command below assumes you have node/npm installed somewhere on your `$PATH`:
 
@@ -42,11 +44,33 @@ Simply run:
 * In the console, do NOT do `Geekt = Geekt.deployed()` (or whatever your app is called). Otherwise you lose the original reference to your deployed app!
 * The last part of the tutorial is very rough and confusing. I ended up building my own old-school, non-react frontend which just displays the list of users of Solcial. Nothing fancy but it's better than blindly copying the over-complicated code at https://github.com/Tectract/ethereum-demo-tools/tree/master/GeektReactApp/src IMO
 * No mention of testing :( -- I highly recommend trying to write a minimal set of test for the contract created for the sample app. Here's [Truffle's wiki about testing](http://truffleframework.com/docs/getting_started/solidity-tests)
-* Dynamically sized arrays cannot be returned from within Solidity (http://solidity.readthedocs.io/en/develop/types.html#members), but they're able to be returned when called `web3`! What a mess. This means truffle tests will fail while the actual Dapp is fine. Workaround is to use a large array (instead of `address[]`, use `address[100]`, say). Here I'm just working around this by adding an extra `getNumberOfUsers` method for testing.
+
+# General Notes
+* Dynamically sized arrays cannot be returned from within Solidity
+  (http://solidity.readthedocs.io/en/develop/types.html#members), but they're
+  able to be returned when called `web3`! What a mess. This means truffle tests
+  will fail while the actual Dapp is fine. Workaround is to use a large array
+  (instead of `address[]`, use `address[100]`, say). Here I'm just working
+  around this by adding an extra `getNumberOfUsers` method for testing.
+* `contract.method.call` vs. `contract.method()` can seem very similar (in
+  JavaScript, `.call` is a method on the `Function` prototype to override the
+  context!) but they are NOT. See [these
+  docs](http://truffleframework.com/docs/getting_started/contracts#executing-contract-functions).
+  The TLDR is that `contract.method.call()` executes a read on the local node
+  (cheap, only applicable to reads, and returns values), whereas
+  `contract.method()` executes a _transaction_ which returns a transaction
+  object on success (expensive, should be used only to alter state, and results
+  in a transaction returned as a value to the call)
+* Testing with Solidity really sucks. I much prefer going with mocha/chai.
+* While we're on the subject of tests: it's not clear at all that `.call()`
+  returns a promise! You either have to go with a promise chain to read values
+  OR get fancy and start using async/await (my preferred option since it makes
+  the tests so much more readable.)
 
 # TODO
 - [x] Follow tutorial, get the app running on dev
 - [x] Build UI to access data with web3 in a browser
 - [x] Write Solidity tests for `Solcial.sol`
-- [ ] Write JS tests for `Solcial.sol`
+- [x] Write JS tests for `Solcial.sol`
+- [ ] Write more complete JS tests for `Solcial.sol`
 - [ ] Cleanup the project and the extra contracts
